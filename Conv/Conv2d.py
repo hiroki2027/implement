@@ -24,7 +24,7 @@ def conv2d_forward(x, w, b, stride=1, padding=0):
     if padding > 0:
         x = jnp.pad(x, ((0,0), (0,0), (padding,padding), (padding,padding)), mode='constant')
 
-    # 出力サイズ計算
+    # 出力サイズ計算　バディング処理で+2Pは処理ずみ
     h_out = (x.shape[2] - kh) // stride + 1
     w_out = (x.shape[3] - kw) // stride + 1
 
@@ -38,6 +38,7 @@ def conv2d_forward(x, w, b, stride=1, padding=0):
             x_slice = x[:, :, i*stride:i*stride+kh, j*stride:j*stride+kw]
 
             # Σ x*w + b
+            # 行列の積ではないことに注意
             y = y.at[:, :, i, j].set(jnp.tensordot(x_slice, w, axes=([1,2,3],[1,2,3])) + b)
 
     return y
