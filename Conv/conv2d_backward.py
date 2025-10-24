@@ -81,4 +81,4 @@ def conv2d_backward(dy, x, w, stride=1, padding=0):
 # --- 数式での勾配定義 ---
 # ∂L/∂b_c = Σ_{n,i,j} dy_{n,c,i,j}
 # ∂L/∂w_{c_out,c_in,m,n} = Σ_{n,i,j} dy_{n,c_out,i,j} * x_{n,c_in,i*stride+m,j*stride+n}
-# ∂L/∂x_{n,c_in,i,j} = Σ_{c_out,m,n} dy_{n,c_out,i−m,j−n} * w_{c_out,c_in,m,n} (転置畳み込み)
+# ∂L/∂x_{n,c_in,i,j} = Σ_{c_out,m,n} dy_{n,c_out,i−m,j−n} * w_{c_out,c_in,m,n} (転置畳み込み)   
